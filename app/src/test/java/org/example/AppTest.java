@@ -3,12 +3,13 @@
  */
 package org.example;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
-class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+public class AppTest {
+
+    @Test
+    public void testMainRuns() {
+        assertDoesNotThrow(() -> App.main(new String[]{}));
     }
 }

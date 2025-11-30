@@ -4,11 +4,46 @@
 package org.example;
 
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
-
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+
+        //Creates a Node and progresses repetatedly down three levels from there
+        BinaryTree tree = new BinaryTree(new Squirrel("Root"));
+
+        Node root = tree.getRoot();
+
+        // Level 1
+        tree.attachLeft(root, new Squirrel("L1-Left"));
+        tree.attachRight(root, new Squirrel("L1-Right"));
+
+        // Level 2
+        Node l1Left = root.getLeft();
+        Node l1Right = root.getRight();
+
+        tree.attachLeft(l1Left, new Squirrel("L2-LeftLeft"));
+        tree.attachRight(l1Left, new Squirrel("L2-LeftRight"));
+
+        tree.attachLeft(l1Right, new Squirrel("L2-RightLeft"));
+        tree.attachRight(l1Right, new Squirrel("L2-RightRight"));
+
+        // Level 3
+        Node l2LL = l1Left.getLeft();
+        Node l2LR = l1Left.getRight();
+        Node l2RL = l1Right.getLeft();
+        Node l2RR = l1Right.getRight();
+
+        tree.attachLeft(l2LL, new Squirrel("L3-LL-Left"));
+        tree.attachRight(l2LL, new Squirrel("L3-LL-Right"));
+
+        tree.attachLeft(l2LR, new Squirrel("L3-LR-Left"));
+        tree.attachRight(l2LR, new Squirrel("L3-LR-Right"));
+
+        tree.attachLeft(l2RL, new Squirrel("L3-RL-Left"));
+        tree.attachRight(l2RL, new Squirrel("L3-RL-Right"));
+
+        tree.attachLeft(l2RR, new Squirrel("L3-RR-Left"));
+        tree.attachRight(l2RR, new Squirrel("L3-RR-Right"));
+
+        System.out.println("Print Tree:");
+        tree.traversePreOrder(tree.getRoot());
     }
 }
